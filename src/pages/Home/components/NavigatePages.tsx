@@ -5,9 +5,10 @@ import { ImagesFilesList } from "../../../imgs";
 import { useProviderListPCS } from "../ProviderListPCS";
 import { styleEditPage, styleNavigatePages } from "../style";
 import { CText } from "../../../components/CText";
-import { Alert, NativeSyntheticEvent, TextInputKeyPressEventData, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { CTextInput } from "../../../components/CTextInput";
 import { CButton } from "../../../components/CButton";
+import { SearchButton } from "../../../components/SearchButton";
 
 export function NavigatePages()
 {
@@ -15,6 +16,7 @@ export function NavigatePages()
         <ButtonPreview />
         <PageInfo />
         <ButtonNext />
+        <SearchButton />
     </CView>;
 }
 
