@@ -6,6 +6,7 @@ import { VerticalSpace } from "../../../components/VerticalSpace";
 import { Local } from "./Local";
 import { Episodes } from "./Episodes";
 import { ShowMoreInfo } from "./ShowMoreInfo";
+import { LinkBack } from "../../../components/LinkBack";
 
 
 export function Detalhes() {
@@ -24,6 +25,7 @@ export function Detalhes() {
         <Episodes />
         <VerticalSpace />
         <ShowMoreInfo />
+        <LinkBack />
     </ScrollView>;
 }
 
