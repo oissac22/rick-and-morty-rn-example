@@ -1,4 +1,28 @@
 
+export type TServiceGqlPCDetailByIdResultOrigin = {
+    id: string,
+    name: string,
+    type: string,
+    dimension: string,
+    created: string,
+}
+
+export type TServiceGqlPCDetailByIdResultLocation = {
+    id: string,
+    name: string,
+    type: string,
+    dimension: string,
+    created: string,
+}
+
+export type TServiceGqlPCDetailByIdResultEpisode = {
+    id: string,
+    name: string,
+    air_date: string,
+    episode: string,
+    created: string,
+}
+
 export type TServiceGqlPCDetailByIdResult = {
     id: string,
     name: string,
@@ -6,27 +30,9 @@ export type TServiceGqlPCDetailByIdResult = {
     species: string,
     type: string,
     gender: string,
-    origin: {
-        id: string,
-        name: string,
-        type: string,
-        dimension: string,
-        created: string,
-    };
-    location: {
-        id: string,
-        name: string,
-        type: string,
-        dimension: string,
-        created: string,
-    };
+    origin: TServiceGqlPCDetailByIdResultOrigin;
+    location: TServiceGqlPCDetailByIdResultLocation;
     image: string,
-    episode: {
-        id: string,
-        name: string,
-        air_date: string,
-        episode: string,
-        created: string,
-    }[];
+    episode: TServiceGqlPCDetailByIdResultEpisode[];
     created: string,
 };
