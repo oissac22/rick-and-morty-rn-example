@@ -17,6 +17,8 @@ export function useGetListPCS()
     const infos = useRef<TServiceGqlPCSListResultInfo>();
     const filterName = useRef<string>('');
 
+    const hasFilter = !!filterName.current;
+
     const load = useCallback(() => {
         if(loadding)
             return;
@@ -31,7 +33,6 @@ export function useGetListPCS()
                 setListPCS(result.results)
                 infos.current = result.info;
             }).catch( (err:any) => {
-                console.log('err :>> ', err);
                 setError(err.response?.data || err.message)
             }).finally(() => {
                 setLoadding(false);
@@ -88,6 +89,6 @@ export function useGetListPCS()
 
     return {
         load, resetLoad, previewPage, nextPage, filter, changePage,
-        loadding, error, page, infos, listPCS
+        loadding, error, page, infos, listPCS, hasFilter
     }
 }
