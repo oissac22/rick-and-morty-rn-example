@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { CView } from "../../../components/CView";
 import { IconButton } from "../../../components/IconButtom";
 import { ImagesFilesList } from "../../../imgs";
@@ -7,6 +7,7 @@ import { styleEditPage, styleNavigatePages } from "../style";
 import { CText } from "../../../components/CText";
 import { Alert, Button, TouchableOpacity } from "react-native";
 import { CTextInput } from "../../../components/CTextInput";
+import { BACK_COLOR_1, BACK_COLOR_2, COLOR } from "../../../design";
 
 export function NavigatePages()
 {
@@ -25,10 +26,9 @@ function ButtonPreview()
         listPCS.previewPage();
     },[])
 
-    if (listPCS.page.current <= 0)
-        return null;
+    const opacity = useMemo(() => listPCS.page.current <= 0 ? .3 : 1 ,[listPCS.page.current])
 
-    return <IconButton source={ImagesFilesList.greenArrowLeft} onPress={handlePreview} />;
+    return <IconButton source={ImagesFilesList.greenArrowLeft} onPress={handlePreview} style={{opacity}} />;
 }
 
 function ButtonNext()
@@ -39,10 +39,13 @@ function ButtonNext()
         listPCS.nextPage();
     },[])
 
-    if (listPCS.page.current >= (listPCS.infos.current?.pages || 0) - 1)
-        return null;
+    const opacity = useMemo(() => {
+        return (listPCS.page.current >= (listPCS.infos.current?.pages || 0))
+            ? .3
+            : 1;
+    },[listPCS.page.current])
 
-    return <IconButton source={ImagesFilesList.greenArrowRight} onPress={handleNext} />;
+    return <IconButton source={ImagesFilesList.greenArrowRight} onPress={handleNext} style={{opacity}} />;
 }
 
 function PageInfo()
@@ -59,15 +62,15 @@ function PageInfo()
     },[])
 
     const handleOk = useCallback((value:number) => {
-        listPCS.changePage(value - 1);
+        listPCS.changePage(value);
     },[])
 
     return <TouchableOpacity onPress={handleClick}>
         {
             stateEdit ?
-            <EditPage onOk={handleOk} onCancel={handleCancel} /> :
+            <EditPage onOk={handleOk} onCancel={handleCancel} _default={listPCS.page.current + ''} /> :
             <CText>
-                {listPCS.page.current + 1} / {listPCS.infos.current?.pages}
+                {listPCS.page.current} / {listPCS.infos.current?.pages}
             </CText>
         }
     </TouchableOpacity>
@@ -94,8 +97,8 @@ function EditPage({ onCancel, onOk, _default }:IEditPageProps)
     },[])
 
     return <CView style={styleEditPage.container}>
-        <CTextInput autoFocus={true} style={styleEditPage.input} onChangeText={handleChange} />
-        <Button title="OK" onPress={handleOk} />
-        <Button title="Cancelar" onPress={onCancel} />
+        <CTextInput autoFocus={true} style={styleEditPage.input} onChangeText={handleChange} defaultValue={_default} />
+        <Button title="OK" onPress={handleOk} color={COLOR} />
+        <Button title="Cancelar" onPress={onCancel} color={COLOR} />
     </CView>
 }

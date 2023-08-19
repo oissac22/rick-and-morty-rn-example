@@ -34,7 +34,7 @@ export function useGetListPCS()
     const previewPage = useCallback(() => {
         if(loadding)
             return;
-        if (page.current > 0)
+        if (page.current > 1)
         {
             page.current--
             load();
@@ -44,7 +44,7 @@ export function useGetListPCS()
     const nextPage = useCallback(() => {
         if(loadding)
             return;
-        if (page.current < (infos.current?.pages || 0) - 1)
+        if (page.current < (infos.current?.pages || 0))
             {
                 page.current++
                 load();
@@ -71,10 +71,10 @@ export function useGetListPCS()
     const changePage = useCallback((pageValue:number) => {
         if(loadding)
             return;
-        if (pageValue < 0)
-            pageValue = 0;
+        if (pageValue < 1)
+            pageValue = 1;
         if (pageValue >= (infos.current?.pages || 0))
-            pageValue = (infos.current?.pages || 0) - 1;
+            pageValue = (infos.current?.pages || 0);
         page.current = pageValue;
         load();
     },[])

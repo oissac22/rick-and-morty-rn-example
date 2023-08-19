@@ -15,7 +15,7 @@ export function CTextInput({style, ...props}:ICTextInputProps)
 const styleTextInput = StyleSheet.create({
     container: {
         color: COLOR,
-        width: 100,
+        width: 70,
         height: 30,
         padding: 5
     }

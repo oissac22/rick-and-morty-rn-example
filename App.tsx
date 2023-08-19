@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { CView } from './src/components/CView';
 import { Home } from './src/pages';
 import { Template } from './src/components/Template';
+import { COLOR } from './src/design';
 
 export default function App() {
   return (
@@ -10,7 +11,7 @@ export default function App() {
       <Template>
         <Home />
       </Template>
-      <StatusBar style="dark" />
+      <StatusBar style="dark" backgroundColor={COLOR}  />
     </CView>
   );
 }

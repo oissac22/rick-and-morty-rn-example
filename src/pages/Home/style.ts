@@ -58,7 +58,7 @@ export const styleEditPage = StyleSheet.create({
         display: "flex",
         flexDirection: 'row',
         gap: 10,
-        alignItems: 'center'
+        alignItems: 'flex-end'
     },
     input: {
         borderBottomColor: COLOR,
