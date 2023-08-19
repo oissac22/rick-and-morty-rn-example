@@ -5,9 +5,8 @@ import { ImagesFilesList } from "../../../imgs";
 import { useProviderListPCS } from "../ProviderListPCS";
 import { styleEditPage, styleNavigatePages } from "../style";
 import { CText } from "../../../components/CText";
-import { Alert, Button, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { CTextInput } from "../../../components/CTextInput";
-import { BACK_COLOR_1, BACK_COLOR_2, COLOR } from "../../../design";
 import { CButton } from "../../../components/CButton";
 
 export function NavigatePages()
