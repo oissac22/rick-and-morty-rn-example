@@ -1,5 +1,6 @@
-import { createContext, useCallback, useContext, useState, useRef } from "react";
+import { createContext, useCallback, useContext, useState, useRef, useEffect } from "react";
 import { AdminMemoryStack } from "../../entities";
+import { BackHandler } from "react-native";
 
 interface INavigateProviderProps {
     setPage: (page: string) => void;
@@ -22,8 +23,23 @@ export function NavigateProvider({ children }:any)
     const backPage = useCallback(() => {
         const oldPage = stackMemory.current.pop();
         if (oldPage !== null)
+        {
             _setPage(page);
+            return true;
+        }
+        return false;
     },[])
+
+    useEffect(() => {
+        const handleEvent = () => {
+            const result = backPage();
+            return result;
+        }
+        BackHandler.addEventListener('hardwareBackPress', handleEvent);
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handleEvent)
+        }
+    },[backPage])
 
     return <Context.Provider
         value={{
