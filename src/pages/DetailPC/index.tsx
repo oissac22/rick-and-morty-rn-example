@@ -1,8 +1,9 @@
-import { CText } from "../../components/CText";
+import { ProviderDetailPC } from "./provider";
+import { Photo } from "./components/Photo";
 
 export function DetailPC()
 {
-    return <CText>
-        DETAIL PC
-    </CText>
+    return <ProviderDetailPC>
+        <Photo />
+    </ProviderDetailPC>
 }

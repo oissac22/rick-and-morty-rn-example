@@ -1,3 +1,3 @@
 export interface IRequestServices {
-    result(): Promise<any>;
+    result(...props:any): Promise<any>;
 }
