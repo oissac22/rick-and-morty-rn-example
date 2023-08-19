@@ -26,7 +26,7 @@ function ButtonPreview()
         listPCS.previewPage();
     },[])
 
-    const opacity = useMemo(() => listPCS.page.current <= 0 ? .3 : 1 ,[listPCS.page.current])
+    const opacity = useMemo(() => listPCS.page.current <= 1 ? .3 : 1 ,[listPCS.page.current])
 
     return <IconButton source={ImagesFilesList.greenArrowLeft} onPress={handlePreview} style={{opacity}} />;
 }

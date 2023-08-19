@@ -56,7 +56,7 @@ export function useGetListPCS()
         if(loadding)
             return;
         infos.current = undefined;
-        page.current = 0;
+        page.current = 1;
         setListPCS(listPCS = []);
         load();
     },[loadding, load, listPCS]);
