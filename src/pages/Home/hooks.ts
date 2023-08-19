@@ -68,8 +68,19 @@ export function useGetListPCS()
         resetLoad();
     },[loadding, resetLoad])
 
+    const changePage = useCallback((pageValue:number) => {
+        if(loadding)
+            return;
+        if (pageValue < 0)
+            pageValue = 0;
+        if (pageValue >= (infos.current?.pages || 0))
+            pageValue = (infos.current?.pages || 0) - 1;
+        page.current = pageValue;
+        load();
+    },[])
+
     return {
-        load, resetLoad, previewPage, nextPage, filter,
+        load, resetLoad, previewPage, nextPage, filter, changePage,
         loadding, error, page, infos, listPCS
     }
 }

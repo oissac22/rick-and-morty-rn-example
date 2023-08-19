@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { BACK_COLOR_1, COLOR } from "../../design";
 
 export const styleHome = StyleSheet.create({
     container: {
@@ -39,5 +40,28 @@ export const styleItemPC = StyleSheet.create({
     name: {
         fontSize: 23,
         fontWeight: 'bold',
+    }
+})
+
+export const styleNavigatePages = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 20,
+        backgroundColor: BACK_COLOR_1,
+        gap:40
+    }
+})
+
+export const styleEditPage = StyleSheet.create({
+    container: {
+        display: "flex",
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center'
+    },
+    input: {
+        borderBottomColor: COLOR,
+        borderBottomWidth: 3
     }
 })
