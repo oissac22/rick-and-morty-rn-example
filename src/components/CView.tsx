@@ -6,8 +6,9 @@ interface ICViewProps extends ViewProps {}
 export function CView({style, ...props}:ICViewProps)
 {
     const styleResult = {
-        backgroundColor: BACK_COLOR_1,
+        backgroundColor: "transparent",
         ...(style as any || {})
     }
+    
     return <View style={styleResult} {...props} />
 }
