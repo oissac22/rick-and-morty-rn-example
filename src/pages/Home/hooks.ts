@@ -2,6 +2,9 @@ import { useCallback, useRef, useState } from "react";
 import { ServiceGqlPCSList } from "../../services";
 import { RequestFetch } from "../../entities";
 import { TServiceGqlPCSListResultInfo, TServiceGqlPCSListResultResults } from "../../interfaces/TServiceGqlPCSListResult";
+import { useStateSessionMemory } from "../../hooks";
+
+const ID_SESSION_PAGE = 'list-pcs-page';
 
 export function useGetListPCS()
 {
@@ -9,7 +12,8 @@ export function useGetListPCS()
     const [loadding, setLoadding] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
-    const page = useRef<number>(1);
+    let [page, setPage] = useStateSessionMemory<number>(ID_SESSION_PAGE, 1);
+
     const infos = useRef<TServiceGqlPCSListResultInfo>();
     const filterName = useRef<string>('');
 
@@ -20,7 +24,7 @@ export function useGetListPCS()
         setError('');
         const request = new RequestFetch();
         const service = new ServiceGqlPCSList(request);
-        service.page = page.current;
+        service.page = page;
         service.result()
             .then(result => {
                 setListPCS(result.results)
@@ -30,14 +34,14 @@ export function useGetListPCS()
             }).finally(() => {
                 setLoadding(false);
             })
-    },[loadding])
+    },[loadding, page])
 
     const previewPage = useCallback(() => {
         if(loadding)
             return;
-        if (page.current > 1)
+        if (page > 1)
         {
-            page.current--
+            setPage(--page);
             load();
         }
     }, [loadding, page, load])
@@ -45,9 +49,9 @@ export function useGetListPCS()
     const nextPage = useCallback(() => {
         if(loadding)
             return;
-        if (page.current < (infos.current?.pages || 0))
+        if (page < (infos.current?.pages || 0))
             {
-                page.current++
+                setPage(++page)
                 load();
             }
 
@@ -57,7 +61,7 @@ export function useGetListPCS()
         if(loadding)
             return;
         infos.current = undefined;
-        page.current = 1;
+        setPage(page = 1)
         setListPCS(listPCS = []);
         load();
     },[loadding, load, listPCS]);
@@ -76,7 +80,7 @@ export function useGetListPCS()
             pageValue = 1;
         if (pageValue >= (infos.current?.pages || 0))
             pageValue = (infos.current?.pages || 0);
-        page.current = pageValue;
+        setPage(page = pageValue);
         load();
     },[])
 

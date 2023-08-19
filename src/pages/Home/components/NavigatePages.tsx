@@ -26,7 +26,7 @@ function ButtonPreview()
         listPCS.previewPage();
     },[])
 
-    const opacity = useMemo(() => listPCS.page.current <= 1 ? .3 : 1 ,[listPCS.page.current])
+    const opacity = useMemo(() => listPCS.page <= 1 ? .3 : 1 ,[listPCS.page])
 
     return <IconButton source={ImagesFilesList.greenArrowLeft} onPress={handlePreview} style={{opacity}} />;
 }
@@ -40,10 +40,10 @@ function ButtonNext()
     },[])
 
     const opacity = useMemo(() => {
-        return (listPCS.page.current >= (listPCS.infos.current?.pages || 0))
+        return (listPCS.page >= (listPCS.infos.current?.pages || 0))
             ? .3
             : 1;
-    },[listPCS.page.current])
+    },[listPCS.page])
 
     return <IconButton source={ImagesFilesList.greenArrowRight} onPress={handleNext} style={{opacity}} />;
 }
@@ -68,9 +68,9 @@ function PageInfo()
     return <TouchableOpacity onPress={handleClick}>
         {
             stateEdit ?
-            <EditPage onOk={handleOk} onCancel={handleCancel} _default={listPCS.page.current + ''} /> :
+            <EditPage onOk={handleOk} onCancel={handleCancel} _default={listPCS.page + ''} /> :
             <CText>
-                {listPCS.page.current} / {listPCS.infos.current?.pages}
+                {listPCS.page} / {listPCS.infos.current?.pages}
             </CText>
         }
     </TouchableOpacity>

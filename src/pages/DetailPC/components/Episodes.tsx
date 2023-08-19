@@ -23,10 +23,7 @@ export function Episodes() {
     return <PanelWithTitle title="Episódios">
         {
             episodesResume.map( (epi, idx) => {
-                return <>
-                    <Episode episode={epi} key={epi.id} />
-                    <VerticalSpace />
-                </>
+                return <Episode episode={epi} key={epi.id} />
             })
         }
         {
@@ -55,10 +52,13 @@ function ShowMoreEpi(props:{ setShowMore:(value:boolean)=>void, show:boolean })
 
 function Episode({episode}: {episode:TServiceGqlPCDetailByIdResultEpisode})
 {
-    return <CView>
-        <TitleAndValue title="Nome" value={episode.name} />
-        <TitleAndValue title="Entrou no ar" value={episode.air_date} />
-        <TitleAndValue title="Episódio" value={episode.episode} />
-        <TitleAndValue title="Criado em" value={dateStringToFormatDate(episode.created)} />
-    </CView>
+    return <>
+        <CView>
+            <TitleAndValue title="Nome" value={episode.name} />
+            <TitleAndValue title="Entrou no ar" value={episode.air_date} />
+            <TitleAndValue title="Episódio" value={episode.episode} />
+            <TitleAndValue title="Criado em" value={dateStringToFormatDate(episode.created)} />
+        </CView>
+        <VerticalSpace />
+    </>
 }
