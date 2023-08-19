@@ -1,5 +1,6 @@
-import { ImageBackground, ImageBackgroundProps, StyleSheet } from "react-native";
+import { ImageBackground, ImageBackgroundProps, StyleSheet, TouchableOpacity } from "react-native";
 import { CText } from "../CText";
+import { useState, useCallback } from 'react'
 
 const panel = require('./degrader-right.png');
 
@@ -9,21 +10,32 @@ interface IPhotoProps extends ImageBackgroundProps{
 
 export function PhotoWithTitle({ source, title, ...props }:IPhotoProps)
 {
-    return <ImageBackground
-        style={stylePhoto.container}
-        source={source}
-        resizeMode="cover"
-    >
+    const [viewPhoto, setViewPhoto] = useState<"cover" | "contain">("cover");
+
+    const handleClickPhoto = useCallback(() => {
+        setViewPhoto( prev =>
+            prev === 'contain' ? 'cover' :
+            'contain'
+        )
+    },[])
+
+    return <TouchableOpacity onPress={handleClickPhoto}>
         <ImageBackground
-            source={panel}
-            style={stylePhoto.panelTitle}
-            resizeMode="stretch"
+            style={stylePhoto.container}
+            source={source}
+            resizeMode={viewPhoto}
         >
-            <CText style={stylePhoto.title}>
-                {title}
-            </CText>
+            <ImageBackground
+                source={panel}
+                style={stylePhoto.panelTitle}
+                resizeMode="stretch"
+            >
+                <CText style={stylePhoto.title}>
+                    {title}
+                </CText>
+            </ImageBackground>
         </ImageBackground>
-    </ImageBackground>
+    </TouchableOpacity>
 }
 
 export const stylePhoto = StyleSheet.create({
