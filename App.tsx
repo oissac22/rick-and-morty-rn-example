@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { CView } from './src/components/CView';
-import { Home } from './src/pages';
+import { Pages } from './src/pages';
 import { Template } from './src/components/Template';
 import { COLOR } from './src/design';
+import { NavigateProvider } from './src/components/Navigate/provider';
 
 export default function App() {
   return (
     <CView style={styles.container}>
       <Template>
-        <Home />
+        <Pages />
       </Template>
       <StatusBar style="dark" backgroundColor={COLOR}  />
     </CView>
