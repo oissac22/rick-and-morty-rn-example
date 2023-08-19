@@ -1,8 +1,7 @@
 import { useProviderDetailPC } from "../provider";
 import { CText } from "../../../components/CText";
 import { ScrollView } from "react-native";
-import { CView } from "../../../components/CView";
-import { TitleAndValue } from "../../../components/TitleAndValue";
+import { InformacoesBasicas } from "./InformacoesBasicas";
 
 
 export function Detalhes() {
@@ -16,11 +15,3 @@ export function Detalhes() {
     </ScrollView>;
 }
 
-function InformacoesBasicas()
-{
-    const { pcData } = useProviderDetailPC();
-
-    return <CView>
-        <TitleAndValue title="Status" value={pcData?.status} />
-    </CView>
-}
