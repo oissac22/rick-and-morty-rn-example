@@ -4,7 +4,6 @@ import { CView } from './src/components/CView';
 import { Pages } from './src/pages';
 import { Template } from './src/components/Template';
 import { COLOR } from './src/design';
-import { NavigateProvider } from './src/components/Navigate/provider';
 
 export default function App() {
   return (
