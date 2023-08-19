@@ -5,6 +5,7 @@ import { Photo } from "../../../components/Photo";
 import { styleItemPC } from "../style";
 import { Alert, TouchableOpacity } from "react-native";
 import { useCallback } from "react";
+import { useNavigateProvider } from "../../../components/Navigate/provider";
 
 interface IItemPCProps {
     pc: TServiceGqlPCSListResultResults;
@@ -12,8 +13,10 @@ interface IItemPCProps {
 
 export function ItemPC({ pc }: IItemPCProps)
 {
+    const { setPage } = useNavigateProvider()
+
     const handleClick = useCallback(() => {
-        Alert.alert(pc.id, pc.name)
+        setPage(`/detailpc/${pc.id}`)
     }, [])
 
     return <TouchableOpacity style={styleItemPC.container} onPress={handleClick}>
