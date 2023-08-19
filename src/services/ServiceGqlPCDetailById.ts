@@ -8,7 +8,7 @@ export class ServiceGqlPCDetailById implements IRequestServices {
         private readonly request: IRequest
     ){}
 
-    async result(id:string): Promise<TServiceGqlPCDetailByIdResult> {
+    async result(id:string | number): Promise<TServiceGqlPCDetailByIdResult> {
         const gql = new GqlRequestServices(`
             query pc {
                 character (id:${id}) {
