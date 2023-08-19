@@ -98,7 +98,14 @@ function EditPage({ onCancel, onOk, _default }:IEditPageProps)
     },[])
 
     return <CView style={styleEditPage.container}>
-        <CTextInput autoFocus={true} style={styleEditPage.input} onChangeText={handleChange} defaultValue={_default} />
+        <CTextInput
+            autoFocus={true}
+            style={styleEditPage.input}
+            onChangeText={handleChange}
+            defaultValue={_default}
+            keyboardType="numeric"
+            placeholder="Página"
+        />
         <CButton title="OK" onPress={handleOk} />
         <CButton title="Cancelar" onPress={onCancel} />
     </CView>

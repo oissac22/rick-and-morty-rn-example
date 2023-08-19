@@ -9,7 +9,7 @@ export function useGetListPCS()
     const [loadding, setLoadding] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
-    const page = useRef<number>(0);
+    const page = useRef<number>(1);
     const infos = useRef<TServiceGqlPCSListResultInfo>();
     const filterName = useRef<string>('');
 
@@ -20,6 +20,7 @@ export function useGetListPCS()
         setError('');
         const request = new RequestFetch();
         const service = new ServiceGqlPCSList(request);
+        service.page = page.current;
         service.result()
             .then(result => {
                 setListPCS(result.results)
@@ -56,7 +57,7 @@ export function useGetListPCS()
         if(loadding)
             return;
         infos.current = undefined;
-        page.current = 0;
+        page.current = 1;
         setListPCS(listPCS = []);
         load();
     },[loadding, load, listPCS]);

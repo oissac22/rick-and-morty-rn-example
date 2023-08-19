@@ -1,6 +1,7 @@
 import { ImageBackground } from "react-native";
 import { ImagesFilesList } from "../../imgs";
 import { styleTemplate } from "./style";
+import { Keyboard } from "../Keyboard";
 
 interface ITemplateProps {
     children:any
@@ -9,6 +10,8 @@ interface ITemplateProps {
 export function Template({ children }:ITemplateProps)
 {
     return <ImageBackground source={ImagesFilesList.bg} style={styleTemplate.container}>
-        {children}
+        <Keyboard>
+            {children}
+        </Keyboard>
     </ImageBackground>
 }
