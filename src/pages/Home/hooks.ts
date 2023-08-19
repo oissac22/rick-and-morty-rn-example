@@ -5,6 +5,7 @@ import { TServiceGqlPCSListResultInfo, TServiceGqlPCSListResultResults } from ".
 import { useStateSessionMemory } from "../../hooks";
 
 const ID_SESSION_PAGE = 'list-pcs-page';
+const ID_SESSION_FILTER = 'list-pcs-filter';
 
 export function useGetListPCS()
 {
@@ -13,11 +14,11 @@ export function useGetListPCS()
     const [error, setError] = useState<string>('');
 
     let [page, setPage] = useStateSessionMemory<number>(ID_SESSION_PAGE, 1);
+    let [filterName, setFilterName] = useStateSessionMemory<string>(ID_SESSION_FILTER, '');
 
     const infos = useRef<TServiceGqlPCSListResultInfo>();
-    const filterName = useRef<string>('');
 
-    const hasFilter = !!filterName.current;
+    const hasFilter = !!filterName;
 
     const load = useCallback(() => {
         if(loadding)
@@ -27,7 +28,7 @@ export function useGetListPCS()
         const request = new RequestFetch();
         const service = new ServiceGqlPCSList(request);
         service.page = page;
-        service.filter = filterName.current ? { name: filterName.current } : {} ;
+        service.filter = filterName ? { name: filterName } : {} ;
         service.result()
             .then(result => {
                 setListPCS(result.results)
@@ -37,7 +38,7 @@ export function useGetListPCS()
             }).finally(() => {
                 setLoadding(false);
             })
-    },[loadding, page])
+    },[loadding, page, filterName])
 
     const previewPage = useCallback(() => {
         if(loadding)
@@ -72,9 +73,9 @@ export function useGetListPCS()
     const filter = useCallback((filterNameValue:string) => {
         if(loadding)
             return;
-        filterName.current = filterNameValue;
+        setFilterName(filterName = filterNameValue)
         resetLoad();
-    },[loadding, resetLoad])
+    },[loadding, resetLoad, filterName])
 
     const changePage = useCallback((pageValue:number) => {
         if(loadding)
