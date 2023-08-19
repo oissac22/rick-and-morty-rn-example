@@ -1,8 +1,5 @@
-import { Image } from "react-native";
-import { stylePhoto } from "../style";
 import { useProviderDetailPC } from "../provider";
-
-
+import { PhotoWithTitle } from "../../../components/PhotoWithTitle";
 
 export function Photo()
 {
@@ -11,9 +8,8 @@ export function Photo()
     if (loadding || !pcData?.image)
         return null;
 
-    return <Image
-        style={stylePhoto.container}
-        source={{uri: pcData.image}}
-        resizeMode="cover"
-    />;
+    return <PhotoWithTitle
+        title={pcData.name}
+        source={{ uri: pcData.image }}
+    />
 }

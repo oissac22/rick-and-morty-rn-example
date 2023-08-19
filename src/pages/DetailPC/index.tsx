@@ -1,7 +1,6 @@
-import { ProviderDetailPC, useProviderDetailPC } from "./provider";
+import { ProviderDetailPC } from "./provider";
 import { Photo } from "./components/Photo";
-import { useEffect } from "react";
-import { Loadding } from "../../components/Loadding";
+import { Loading } from "./components/Loading";
 
 export function DetailPC()
 {
@@ -11,17 +10,3 @@ export function DetailPC()
     </ProviderDetailPC>
 }
 
-export function Loading()
-{
-    const { load, loadding } = useProviderDetailPC();
-
-    useEffect(() => {
-        load(1);
-    },[])
-
-    if (loadding)
-        return <Loadding />
-    
-    return null;
-
-}

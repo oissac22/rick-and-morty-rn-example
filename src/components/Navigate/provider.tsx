@@ -32,8 +32,8 @@ export function NavigateProvider({ children }:any)
     },[])
 
     const paths = useMemo(() => {
-        const urlPaths = page.replace(/?.+$/,'');
-        return urlPaths.split('/');
+        const urlPaths = page.replace(/\?.+$/,'');
+        return urlPaths.split('/').filter(value => !!value);
     }, [page])
 
     useEffect(() => {
