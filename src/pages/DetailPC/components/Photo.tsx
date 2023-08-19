@@ -1,12 +1,18 @@
 import { Image } from "react-native";
-import { ImagesFilesList } from "../../../imgs";
 import { stylePhoto } from "../style";
+import { useProviderDetailPC } from "../provider";
 
 
 
-export function Photo() {
+export function Photo()
+{
+    const { pcData, loadding } = useProviderDetailPC();
+
+    if (loadding || !pcData?.image)
+        return null;
+
     return <Image
         style={stylePhoto.container}
-        source={ImagesFilesList.bg}
+        source={{uri: pcData.image}}
     />;
 }
