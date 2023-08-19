@@ -1,6 +1,7 @@
 import { StyleSheet, ViewProps } from "react-native";
 import { CText } from "./CText";
 import { CView } from "./CView";
+import { Dictionary } from "../entities/dictionary";
 
 interface ITitleAndValueProps extends ViewProps {
     title: string,
@@ -9,6 +10,9 @@ interface ITitleAndValueProps extends ViewProps {
 }
 
 export function TitleAndValue({ title, value, hiddenIfNotValue, style, ...props }:ITitleAndValueProps) {
+    if (value)
+        value = Dictionary[value] || value;
+    
     if (hiddenIfNotValue && !value)
         return null;
     
