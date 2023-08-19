@@ -5,7 +5,7 @@ import { ImagesFilesList } from "../../../imgs";
 import { useProviderListPCS } from "../ProviderListPCS";
 import { styleEditPage, styleNavigatePages } from "../style";
 import { CText } from "../../../components/CText";
-import { Alert, TouchableOpacity } from "react-native";
+import { Alert, NativeSyntheticEvent, TextInputKeyPressEventData, TouchableOpacity } from "react-native";
 import { CTextInput } from "../../../components/CTextInput";
 import { CButton } from "../../../components/CButton";
 
@@ -101,11 +101,11 @@ function EditPage({ onCancel, onOk, _default }:IEditPageProps)
             autoFocus={true}
             style={styleEditPage.input}
             onChangeText={handleChange}
+            onEndEditing={handleOk}
             defaultValue={_default}
             keyboardType="numeric"
             placeholder="Página"
         />
-        <CButton title="OK" onPress={handleOk} />
-        <CButton title="Cancelar" onPress={onCancel} />
+        <CButton title="X" onPress={onCancel} />
     </CView>
 }
