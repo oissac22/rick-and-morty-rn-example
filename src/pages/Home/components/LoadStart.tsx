@@ -5,7 +5,7 @@ export function LoadStart() {
     const { listPCS } = useProviderListPCS();
 
     useEffect(() => {
-        listPCS.resetLoad();
+        listPCS.load();
     }, []);
 
     return null;
