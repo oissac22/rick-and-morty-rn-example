@@ -1,13 +1,13 @@
 import { useCallback, useRef, useState } from "react";
 import { ServiceGqlPCSList } from "../../services";
 import { RequestFetch } from "../../entities";
-import { TServiceGqlPCSListResult, TServiceGqlPCSListResultInfo, TServiceGqlPCSListResultResults } from "../../interfaces/TServiceGqlPCSListResult";
+import { TServiceGqlPCSListResultInfo, TServiceGqlPCSListResultResults } from "../../interfaces/TServiceGqlPCSListResult";
 
 export function useGetListPCS()
 {
+    let [listPCS, setListPCS] = useState<TServiceGqlPCSListResultResults[]>([]);
     const [loadding, setLoadding] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    let [listPCS, setListPCS] = useState<TServiceGqlPCSListResultResults[]>([]);
 
     const page = useRef<number>(0);
     const infos = useRef<TServiceGqlPCSListResultInfo>();
