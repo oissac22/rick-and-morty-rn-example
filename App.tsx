@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { CView } from './components/CView';
-import { CText } from './components/CText';
+import { CView } from './src/components/CView';
+import { CText } from './src/components/CText';
 
 export default function App() {
   return (
