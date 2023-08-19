@@ -16,9 +16,11 @@ export class ServiceGqlPCSList implements IRequestServices {
     ){}
 
     async result(): Promise<TServiceGqlPCSListResult> {
+        const filter = JSON.stringify(this.filter);
+        const adjustFilter = filter.replace(/\"(\w+)\":/g, '$1:')
         const gql = new GqlRequestServices(`
             query pcs {
-                characters(page:${this.page}, filter: ${JSON.stringify(this.filter)}) {
+                characters(page:${this.page}, filter: ${adjustFilter}) {
                     info {
                         count
                         pages

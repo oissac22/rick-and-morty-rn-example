@@ -25,11 +25,13 @@ export function useGetListPCS()
         const request = new RequestFetch();
         const service = new ServiceGqlPCSList(request);
         service.page = page;
+        service.filter = filterName.current ? { name: filterName.current } : {} ;
         service.result()
             .then(result => {
                 setListPCS(result.results)
                 infos.current = result.info;
             }).catch( (err:any) => {
+                console.log('err :>> ', err);
                 setError(err.response?.data || err.message)
             }).finally(() => {
                 setLoadding(false);
