@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState, useRef, useEffect } from "react";
+import { createContext, useCallback, useContext, useState, useRef, useEffect, useMemo } from "react";
 import { AdminMemoryStack } from "../../entities";
 import { BackHandler } from "react-native";
 
@@ -6,6 +6,7 @@ interface INavigateProviderProps {
     setPage: (page: string) => void;
     backPage: () => void;
     page: string;
+    paths: string[];
 }
 
 const Context = createContext({} as INavigateProviderProps);
@@ -30,6 +31,11 @@ export function NavigateProvider({ children }:any)
         return false;
     },[])
 
+    const paths = useMemo(() => {
+        const urlPaths = page.replace(/?.+$/,'');
+        return urlPaths.split('/');
+    }, [page])
+
     useEffect(() => {
         const handleEvent = () => {
             const result = backPage();
@@ -45,7 +51,8 @@ export function NavigateProvider({ children }:any)
         value={{
             setPage,
             backPage,
-            page
+            page,
+            paths
         }}
     >
         {children}
