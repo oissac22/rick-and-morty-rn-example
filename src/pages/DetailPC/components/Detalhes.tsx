@@ -1,15 +1,18 @@
 import { useProviderDetailPC } from "../provider";
-import { CText } from "../../../components/CText";
 import { ScrollView } from "react-native";
 import { InformacoesBasicas } from "./InformacoesBasicas";
 import { Origem } from "./Origem";
 import { VerticalSpace } from "../../../components/VerticalSpace";
 import { Local } from "./Local";
 import { Episodes } from "./Episodes";
+import { ShowMoreInfo } from "./ShowMoreInfo";
 
 
 export function Detalhes() {
-    const { pcData } = useProviderDetailPC();
+    const { loadding } = useProviderDetailPC();
+
+    if (loadding)
+        return null;
 
     return <ScrollView>
         <InformacoesBasicas />
@@ -20,9 +23,7 @@ export function Detalhes() {
         <VerticalSpace />
         <Episodes />
         <VerticalSpace />
-        <CText>
-            {JSON.stringify(pcData, null, 4)}
-        </CText>
+        <ShowMoreInfo />
     </ScrollView>;
 }
 
