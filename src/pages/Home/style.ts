@@ -7,18 +7,6 @@ export const styleHome = StyleSheet.create({
     },
 })
 
-export const styleLoadding = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    text: {
-        fontWeight: 'bold',
-        fontSize: 20
-    }
-})
-
 export const styleListPCS = StyleSheet.create({
     container:{
         flex: 1,

@@ -14,5 +14,6 @@ export function Photo()
     return <Image
         style={stylePhoto.container}
         source={{uri: pcData.image}}
+        resizeMode="cover"
     />;
 }
