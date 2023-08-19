@@ -1,6 +1,5 @@
-import { HTTPException } from "../src/error";
-import { IRequest } from "../src/interfaces/IRequest";
-
+import { HTTPException } from "../error";
+import { IRequest } from "../interfaces/IRequest";
 
 export class RequestFetch implements IRequest {
 
