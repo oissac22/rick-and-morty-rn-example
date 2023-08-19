@@ -8,6 +8,7 @@ import { CText } from "../../../components/CText";
 import { Alert, Button, TouchableOpacity } from "react-native";
 import { CTextInput } from "../../../components/CTextInput";
 import { BACK_COLOR_1, BACK_COLOR_2, COLOR } from "../../../design";
+import { CButton } from "../../../components/CButton";
 
 export function NavigatePages()
 {
@@ -98,7 +99,7 @@ function EditPage({ onCancel, onOk, _default }:IEditPageProps)
 
     return <CView style={styleEditPage.container}>
         <CTextInput autoFocus={true} style={styleEditPage.input} onChangeText={handleChange} defaultValue={_default} />
-        <Button title="OK" onPress={handleOk} color={COLOR} />
-        <Button title="Cancelar" onPress={onCancel} color={COLOR} />
+        <CButton title="OK" onPress={handleOk} />
+        <CButton title="Cancelar" onPress={onCancel} />
     </CView>
 }
