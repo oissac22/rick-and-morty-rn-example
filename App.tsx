@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { CView } from './src/components/CView';
-import { CText } from './src/components/CText';
+import { Home } from './src/pages';
+import { Template } from './src/components/Template';
 
 export default function App() {
   return (
     <CView style={styles.container}>
-      <CText>Open up App.tsx to start working on your app!</CText>
+      <Template>
+        <Home />
+      </Template>
       <StatusBar style="dark" />
     </CView>
   );
@@ -16,6 +19,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 });
