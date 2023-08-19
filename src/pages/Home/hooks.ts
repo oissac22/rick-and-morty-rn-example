@@ -9,7 +9,7 @@ export function useGetListPCS()
     const [loadding, setLoadding] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
-    const page = useRef<number>(0);
+    const page = useRef<number>(1);
     const infos = useRef<TServiceGqlPCSListResultInfo>();
     const filterName = useRef<string>('');
 
