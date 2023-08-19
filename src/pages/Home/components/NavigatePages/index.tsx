@@ -1,10 +1,9 @@
 import { useCallback, useState } from "react";
 import { CView } from "../../../../components/CView";
 import { styleNavigatePages } from "../../style";
-import { SearchButton } from "../../../../components/SearchButton";
-import { PageInfo } from "./PageInfo";
-import { ButtonNext } from "./ButtonNext";
-import { ButtonPreview } from "./ButtonPreview";
+import { Alert } from "react-native";
+import { BasicView } from "./BasicView";
+import { SearchView } from "./SearchView";
 
 export function NavigatePages()
 {
@@ -14,17 +13,17 @@ export function NavigatePages()
         setShowSearch(prev => !prev);
     }, [])
 
+    const handleOk = useCallback((text:string) => {
+        setShowSearch(false);
+    },[])
+
     return <CView style={styleNavigatePages.container}>
-        <BasicView handleShowSearch={handleShowSearch} />
+        {
+            showSearch ?
+            <SearchView handleShowSearch={handleShowSearch} searchOk={handleOk} /> :
+            <BasicView handleShowSearch={handleShowSearch} />
+        }
     </CView>;
 }
 
-function BasicView(props:{ handleShowSearch:()=>void })
-{
-    return <>
-        <ButtonPreview />
-        <PageInfo />
-        <ButtonNext />
-        <SearchButton onPress={props.handleShowSearch} />
-    </>
-}
+

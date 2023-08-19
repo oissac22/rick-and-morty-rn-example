@@ -17,6 +17,7 @@ const styleTextInput = StyleSheet.create({
         color: COLOR,
         width: 70,
         height: 30,
-        padding: 5
+        padding: 5,
+        fontSize: 14
     }
 })
