@@ -20,7 +20,7 @@ export function About()
         <TextInfo title="Sobre este aplicativo">
             <CText>
                 Este aplicativo foi desenvolvido como uma prova
-                para analise de capacidade de produção que seria
+                para análise de capacidade de produção que seria
                 realizada por uma empresa específica.
             </CText>
         </TextInfo>
