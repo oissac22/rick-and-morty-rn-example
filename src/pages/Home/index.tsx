@@ -7,8 +7,8 @@ import { Title } from "../../components/Title";
 export function Home()
 {
     return <ProviderListPCS>
-        <LoadStart />
         <Title title="Rick and Morty" />
+        <LoadStart />
         <Loading />
         <ListPCS />
     </ProviderListPCS>

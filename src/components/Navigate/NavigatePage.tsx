@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
-import { CView } from "../CView";
 import { useNavigateProvider } from './provider';
+import * as Animatable from 'react-native-animatable'
+
+// const ANIMATE:Animatable.Animation = "bounceInLeft";
+const ANIMATE:Animatable.Animation = "fadeInLeft";
 
 interface INavigateProps {
     href: string | RegExp,
@@ -17,5 +20,10 @@ export function NavigatePage({ children, href }: INavigateProps)
         return href === page;
     }, [page, href]);
 
-    return visible ? children : null;
+    if (!visible)
+        return null;
+
+    return <Animatable.View animation={ANIMATE} style={{flex:1, width:'100%'}}>
+        {children}
+    </Animatable.View>
 }
