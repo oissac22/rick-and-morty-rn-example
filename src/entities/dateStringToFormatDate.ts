@@ -2,5 +2,6 @@
 export function dateStringToFormatDate(dateStr?: string) {
     if (!dateStr)
         return '';
-    return new Date(dateStr).toLocaleString();
+    const date = new Date(dateStr);
+    return date.toLocaleString();
 }
