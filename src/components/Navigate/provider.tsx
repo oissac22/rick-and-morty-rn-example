@@ -11,27 +11,28 @@ interface INavigateProviderProps {
 
 const Context = createContext({} as INavigateProviderProps);
 
+const stackMemory = new AdminMemoryStack()
+
 export function NavigateProvider({ children }:any)
 {
-    const [page, _setPage] = useState<string>('');
-    const stackMemory = useRef(new AdminMemoryStack())
+    let [page, _setPage] = useState<string>('');
 
     const setPage = useCallback((newPage:string) => {
         if (newPage === page)
             return;
-        stackMemory.current.push(newPage);
-        _setPage(newPage);
+        stackMemory.push(page);
+        _setPage(page = newPage);
     },[page])
 
     const backPage = useCallback(() => {
-        const oldPage = stackMemory.current.pop();
+        const oldPage = stackMemory.pop();
         if (oldPage !== null)
         {
-            _setPage(page);
+            _setPage(page = oldPage);
             return true;
         }
         return false;
-    },[])
+    },[page, _setPage])
 
     const paths = useMemo(() => {
         const urlPaths = page.replace(/\?.+$/,'');
