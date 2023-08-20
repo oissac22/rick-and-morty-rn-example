@@ -21,7 +21,6 @@ export function NavigateProvider({ children }:any)
     useEffect(() => {
         if (lastPage.current !== page)
         {
-            console.log('lastPage, page :>> ', lastPage.current, '-',page);
             stackMemory.push(lastPage.current);
             lastPage.current = page;
         }
