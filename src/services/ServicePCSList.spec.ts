@@ -47,7 +47,7 @@ describe("ServiceGqlPCSList class test", () => {
         service.filter = { name: "test" };
         await service.result();
         expect(request._data).toHaveProperty("query");
-        expect(request._data.query).toMatch(/filter: \{"name":"test"\}/)
+        expect(request._data.query).toMatch(/filter: \{name:"test"\}/)
     })
 
     it('page 30', async () => {
