@@ -15,24 +15,28 @@ const stackMemory = new AdminMemoryStack()
 
 export function NavigateProvider({ children }:any)
 {
-    let [page, _setPage] = useState<string>('');
+    const [page, setPage] = useState<string>('');
+    const lastPage = useRef<string>('')
 
-    const setPage = useCallback((newPage:string) => {
-        if (newPage === page)
-            return;
-        stackMemory.push(page);
-        _setPage(page = newPage);
+    useEffect(() => {
+        if (lastPage.current !== page)
+        {
+            console.log('lastPage, page :>> ', lastPage.current, '-',page);
+            stackMemory.push(lastPage.current);
+            lastPage.current = page;
+        }
     },[page])
 
     const backPage = useCallback(() => {
         const oldPage = stackMemory.pop();
         if (oldPage !== null)
         {
-            _setPage(page = oldPage);
+            lastPage.current = oldPage;
+            setPage(oldPage);
             return true;
         }
         return false;
-    },[page, _setPage])
+    },[page])
 
     const paths = useMemo(() => {
         const urlPaths = page.replace(/\?.+$/,'');

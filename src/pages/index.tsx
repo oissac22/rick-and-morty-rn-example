@@ -9,13 +9,13 @@ import { ProviderListPCS } from "./Home/ProviderListPCS";
 
 export function Pages()
 {
-    return <ProviderListPCS>
-        <NavigateProvider>
+    return <NavigateProvider>
+        <ProviderListPCS>
             <Template>
                 <NavigatePage href="" children={<Home />} />
                 <NavigatePage href={/^\/detailpc\/\d+$/} children={<DetailPC />} />
                 <NavigatePage href="/about" children={<About />} />
             </Template>
-        </NavigateProvider>
-    </ProviderListPCS>
+        </ProviderListPCS>
+    </NavigateProvider>
 }

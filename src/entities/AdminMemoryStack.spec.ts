@@ -5,6 +5,7 @@ describe("AdminMemoryStack class", () => {
     it ("test add and remove memory", () => {
         const adm = new AdminMemoryStack();
         expect(adm.pop()).toBe(null);
+        expect(adm.pop()).toBe(null);
         
         adm.push("test 1");
         adm.push("test 2");
@@ -17,6 +18,7 @@ describe("AdminMemoryStack class", () => {
         
         expect(adm.pop()).toBe("test 4");
         expect(adm.pop()).toBe("test 1");
+        expect(adm.pop()).toBe(null);
         expect(adm.pop()).toBe(null);
 
     })
