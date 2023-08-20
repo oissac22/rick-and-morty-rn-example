@@ -14,14 +14,15 @@ export function Menu() {
 
 function Home()
 {
-    const { setPage } = useNavigateProvider()
+    const { setPage, page } = useNavigateProvider()
 
     const handleClick = useCallback(() => {
         setPage("");
     },[])
 
     const styleResult = {
-        ...styleMenu.iconView
+        ...styleMenu.iconView,
+        opacity: page === '' ? 1 : .3
     }
 
     return <CView style={styleResult}>
@@ -31,7 +32,7 @@ function Home()
 
 function Info()
 {
-    const { setPage } = useNavigateProvider()
+    const { setPage, page } = useNavigateProvider()
 
     const handleClick = useCallback(() => {
         setPage("/about");
@@ -39,7 +40,7 @@ function Info()
 
     const styleResult = {
         ...styleMenu.iconView,
-        opacity: .3
+        opacity: page === '/about' ? 1 : .3
     }
 
     return <CView style={styleResult}>

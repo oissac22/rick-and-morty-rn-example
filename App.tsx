@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { CView } from './src/components/CView';
 import { Pages } from './src/pages';
-import { Template } from './src/components/Template';
 import { COLOR } from './src/design';
 
 export default function App() {
