@@ -3,7 +3,8 @@ import { Alert, ScrollView } from "react-native";
 import { ItemPC } from "./ItemPC";
 import { styleListPCS } from "../style";
 import { NavigatePages } from "./NavigatePages";
-import { useCallback } from "react";
+import { CView } from "../../../components/CView";
+import { CText } from "../../../components/CText";
 
 
 export function ListPCS() {
@@ -11,6 +12,9 @@ export function ListPCS() {
 
     if (listPCS.loadding)
         return null;
+
+    if (listPCS.error)
+        return <NoRegs />
 
     return <ScrollView
         style={styleListPCS.container}
@@ -23,4 +27,13 @@ export function ListPCS() {
         })}
         <NavigatePages />
     </ScrollView>;
+}
+
+function NoRegs()
+{
+    return <CView style={styleListPCS.error}>
+        <CText>
+            Nenhum registro foi carregado
+        </CText>
+    </CView>
 }

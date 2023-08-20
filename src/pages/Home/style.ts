@@ -12,6 +12,11 @@ export const styleListPCS = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         gap: 20
+    },
+    error: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
 

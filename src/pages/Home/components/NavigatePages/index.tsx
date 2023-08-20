@@ -5,6 +5,7 @@ import { Alert } from "react-native";
 import { BasicView } from "./BasicView";
 import { SearchView } from "./SearchView";
 import { useProviderListPCS } from "../../ProviderListPCS";
+import { CText } from "../../../../components/CText";
 
 export function NavigatePages()
 {

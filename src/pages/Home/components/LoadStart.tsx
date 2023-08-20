@@ -13,11 +13,15 @@ export function LoadStart() {
     }, []);
 
     useEffect(() => {
-        error({
-            title: "Erro de servidor",
-            text: listPCS.error,
-            time: TIME_ERROR 
-        })
+        if (listPCS.error)
+        {
+            error({
+                title: "Erro de servidor",
+                text: "Houve algum problema ao tentar se comunicar com o servidor, verifique sua internet.",
+                time: TIME_ERROR 
+            })
+            console.error(listPCS.error)
+        }
     }, [listPCS.error])
 
     return null;
