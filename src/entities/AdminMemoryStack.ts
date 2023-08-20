@@ -5,16 +5,14 @@ export class AdminMemoryStack {
 
     push(value:any):void
     {
-        this.stack.push(value);
-        this.cursor++;
+        this.stack[++this.cursor] = value;
     }
 
     pop():any
     {
         if (this.cursor < 0)
             return null;
-        const value = this.stack[this.cursor];
-        this.cursor--;
+        const value = this.stack[this.cursor--];
         return value;
     }
 }
