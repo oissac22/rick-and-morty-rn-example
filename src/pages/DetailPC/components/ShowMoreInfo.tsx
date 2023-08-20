@@ -2,6 +2,7 @@ import { useProviderDetailPC } from "../provider";
 import { CText } from "../../../components/CText";
 import { Linking, StyleSheet, TouchableOpacity } from "react-native";
 import { useCallback, useMemo } from 'react';
+import { ButtonLinkWeb } from "../../../components/ButtonLinkWeb";
 
 const SPACE = 30;
 
@@ -14,15 +15,10 @@ export function ShowMoreInfo() {
         return encodeURI(`${title} ${name}`)
     },[pcData?.name])
 
-    const handleClick = useCallback(() => {
-        Linking.openURL(`https://www.google.com.br/search?q=${search}`)
-    },[])
-
-    return <TouchableOpacity onPress={handleClick} style={styleShowMoreInfo.container}>
-        <CText style={styleShowMoreInfo.text}>
-            Mais sobre {pcData?.name}
-        </CText>
-    </TouchableOpacity>;
+    return <ButtonLinkWeb
+        text={`Mais sobre ${pcData?.name}`}
+        url={`https://www.google.com.br/search?q=${search}`}
+    />
 }
 
 const styleShowMoreInfo = StyleSheet.create({
