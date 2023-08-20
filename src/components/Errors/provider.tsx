@@ -7,7 +7,10 @@ interface msgProps {
 }
 
 interface IErrorsMessagesProvider {
-    showError: (props: msgProps) => void,
+    hiddenErrors: boolean,
+    title: string,
+    message: string,
+    error: (props: msgProps) => void,
     clearErrors: () => void
 }
 
@@ -17,14 +20,16 @@ export function ErrorsMessagesProvider({children}:any)
 {
     const [message, setMessage] = useState<string>('');
     const [title, setTitle] = useState<string>('');
-    const time = useRef<NodeJS.Timeout | null>(null)
+    const time = useRef<NodeJS.Timeout | null>(null);
+
+    const hiddenErrors = !(message || title)
 
     const clearErrors = useCallback(() => {
         setMessage('');
         setTitle('');
     },[])
 
-    const showError = useCallback((props:msgProps) => {
+    const error = useCallback((props:msgProps) => {
         if (time.current)
             clearTimeout(time.current);
         setMessage(props.text || '');
@@ -35,8 +40,11 @@ export function ErrorsMessagesProvider({children}:any)
 
     return <Context.Provider
         value={{
-            showError,
-            clearErrors
+            error,
+            clearErrors,
+            hiddenErrors,
+            title,
+            message
         }}
     >
         {children}

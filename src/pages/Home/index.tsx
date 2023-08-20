@@ -4,8 +4,8 @@ import { LoadStart } from "./components/LoadStart";
 import { ListPCS } from "./components/ListPCS";
 import { Title } from "../../components/Title";
 
-export function Home() {
-
+export function Home()
+{
     return <ProviderListPCS>
         <LoadStart />
         <Title title="Rick and Morty" />
