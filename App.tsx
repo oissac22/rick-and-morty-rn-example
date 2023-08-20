@@ -8,9 +8,7 @@ import { COLOR } from './src/design';
 export default function App() {
   return (
     <CView style={styles.container}>
-      <Template>
-        <Pages />
-      </Template>
+      <Pages />
       <StatusBar style="dark" backgroundColor={COLOR}  />
     </CView>
   );

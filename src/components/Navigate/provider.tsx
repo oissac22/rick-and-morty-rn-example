@@ -16,9 +16,11 @@ export function NavigateProvider({ children }:any)
     const [page, _setPage] = useState<string>('');
     const stackMemory = useRef(new AdminMemoryStack())
 
-    const setPage = useCallback((page:string) => {
-        stackMemory.current.push(page);
-        _setPage(page);
+    const setPage = useCallback((newPage:string) => {
+        if (newPage === page)
+            return;
+        stackMemory.current.push(newPage);
+        _setPage(newPage);
     },[page])
 
     const backPage = useCallback(() => {
