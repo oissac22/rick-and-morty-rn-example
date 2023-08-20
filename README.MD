@@ -2,7 +2,8 @@
 
 - A principal branch é a master
 - As branchs iniciadas com feature são apenas momentos isolados de desenvolvimento
-- as branchs iniciadas com version são versões anteriores do projeto que salvei pra usar como versionamento
+- As branchs iniciadas com version são versões anteriores do projeto que salvei pra usar como versionamento
+- As branchs feature normalmente são deletadas depois do merge e aprovação, mas neste caso eu as mantive para analise de terceiros 
 
 # Comandos
 
